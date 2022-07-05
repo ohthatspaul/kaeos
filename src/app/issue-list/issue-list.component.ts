@@ -9,6 +9,8 @@ import { IssuesService } from '../issues.service';
 })
 export class IssueListComponent implements OnInit {
   issues: Issue[] = [];
+  // this toggles the appearance of the issue form
+  showReportIssue = false;
 
   constructor(private issueService: IssuesService) {}
 
@@ -18,5 +20,11 @@ export class IssueListComponent implements OnInit {
 
   private getIssues() {
     this.issues = this.issueService.getPendingIssues();
+  }
+
+  //this method is called when the report issue form emits the formClose event
+  onCloseReport() {
+    this.showReportIssue = false;
+    this.getIssues();
   }
 }
