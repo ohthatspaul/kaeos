@@ -29,6 +29,7 @@ export class IssueReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //build the form with the same properties as the Issue interface
     this.issueForm = this.builder.group({
       title: ['', Validators.required],
       description: [''],
