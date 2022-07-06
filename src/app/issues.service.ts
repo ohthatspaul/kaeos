@@ -27,4 +27,12 @@ export class IssuesService {
     const index = this.issues.findIndex((i) => i === issue);
     this.issues[index] = selectedIssue;
   }
+
+  // display a list of suggested issues when the user starts typing in the title form control
+  getSuggestions(title: string) {
+    if (title.length > 3) {
+      return this.issues.filter((issue) => issue.title.indexOf(title) !== -1);
+    }
+    return [];
+  }
 }
