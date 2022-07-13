@@ -18,14 +18,27 @@ export class IssuesService {
     issue.issueNo = this.issues.length + 1;
     this.issues.push(issue);
   }
+
+  //resolve an issue
   completeIssue(issue: Issue) {
     const selectedIssue: Issue = {
       ...issue,
       completed: new Date(),
     };
-
     const index = this.issues.findIndex((i) => i === issue);
     this.issues[index] = selectedIssue;
+  }
+
+  //updateIssue
+  updateIssue(issueNo: number, issue: Issue) {
+    const existingIssue = this.issues.find((i) => i.issueNo === issueNo);
+    if (existingIssue) {
+      const index = this.issues.indexOf(existingIssue);
+      this.issues[index] = {
+        ...existingIssue,
+        ...issue,
+      };
+    }
   }
 
   // display a list of suggested issues when the user starts typing in the title form control
