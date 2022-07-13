@@ -12,6 +12,7 @@ export class IssueListComponent implements OnInit {
   // this toggles the appearance of the issue form
   showReportIssue = false;
   selectedIssue: Issue | null = null;
+  editIssue: Issue | null = null;
 
   constructor(private issueService: IssuesService) {}
 
@@ -28,7 +29,11 @@ export class IssueListComponent implements OnInit {
     this.showReportIssue = false;
     this.getIssues();
   }
-
+  // do nothing and return issues when user cancels on edit
+  onCloseEdit() {
+    this.editIssue = null;
+    this.getIssues();
+  }
   onConfirm(confirmed: boolean) {
     if (confirmed && this.selectedIssue) {
       this.issueService.completeIssue(this.selectedIssue);
